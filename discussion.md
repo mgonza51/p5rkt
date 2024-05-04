@@ -69,6 +69,23 @@ carefully the relevance of each of the intermediate representations.
 For this question, please add your `.ifa` programs either (a) here or
 (b) to the repo and write where they are in this file.
 
+
+Response: 
+Intermediate Representations of New4.ifa. 
+(cond [(+ 1 2) (print 50)] [(* 3 2) (print 70)] [else (print 80)]). This is the starting point, representing the program in its high-level language form.
+The program contains a cond expression with three conditions and an else branch.
+Using IfArith-Tiny,  the program is translated from IfArith to a simpler representation using nested if expressions.
+(if (+ 1 2) (print 50) (if (* 3 2) (print 70) (print 80))) expression representation simplifies the program by converting the cond expression to nested if expressions. The transformation adheres to short-circuiting behavior, stopping evaluation once a true condition is found.
+ANF (Administrative-normal form): The program is then translated into ANF, which simplifies complex expressions into a series of statements using let bindings. ANF makes the code easier to analyze and generate.
+The program becomes more explicit, with temporary variables (let bindings) managing evaluation order.
+IR-Virtual: This is a lower-level intermediate representation closer to the assembly code. The program is broken down into basic operations such as mov-lit, add, cmp, and jump instructions (jz and jmp).
+IR-Virtual deals with data manipulation in registers and memory, reflecting how the program will be executed on hardware.
+
+x86 Assembly Code: The final target representation is in x86 assembly code, which the hardware can execute directly.
+It contains specific instructions for the x86 architecture, handling data in registers and memory, arithmetic operations, comparisons, and control flow. This stage focuses on translating the program into machine-executable code, using printf to print values.
+Each stage converts the high-level IfArith source code to a form that can be executed by hardware. The first steps (IfArith and IfArith-Tiny) aim to simplify the code and control short-circuiting behavior. The intermediate stages (ANF and IR-Virtual) simplify the program's operations and statements, allowing for more efficient execution. The last stage (x86 assembly) produces machine code that is executable on the target architecture. The mismatch in the program's output might be attributed to how short-circuiting behavior is handled during the transition from IfArith to IfArith-Tiny, or to potential difficulties with jump management in the IR-Virtual and x86 stages.
+
+
 [ Question 3 ] 
 
 Describe each of the passes of the compiler in a slight degree of
