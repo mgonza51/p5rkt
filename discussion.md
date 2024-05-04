@@ -1,4 +1,5 @@
 # Discussion and Reflection
+Isabel, Aicha, Meagan
 
 
 The bulk of this project consists of a collection of five
