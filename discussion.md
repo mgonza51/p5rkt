@@ -47,7 +47,7 @@ The purpose of ir-virtual is as the name suggests, an immediate representation o
 
 Ir-virtual is different than x86 architecture because x86 architecture is more efficent than the ir-virtual representation since it uses the 16 registers and memory addresses. Whereas Ir-virtual uses virtual registers, and linearizes the instructions using the "linearize" function. Ir-virtual and x86 archictecture both use jump instructions but ir-virtual is limited in the fact that it does not support all assembly instructions.
 
-In terms of pros, ir-virtual simplifies the compilation process by using virtual registers. Additionally, ir-virtual provides a form of assembly that is optmized because the instruction set is restricted and has efficient register allocation.
+In terms of pros, ir-virtual simplifies the compilation process by using virtual registers. Additionally, ir-virtual provides a form of assembly that is optimized because the instruction set is restricted and has efficient register allocation.
 
 As for the cons, ir-virtual is inefficent because of the fact that it has a restricted amount of instructions it can use. Thus, the assembly provided by ir-vritual is not able to represent complex code that x86 architecture can. Ir-virtual cannot directly use memory addresses like x86 assembly can as well.
 
@@ -81,6 +81,16 @@ there could be more?
 In answering this question, you must use specific examples that you
 got from running the compiler and generating an output.
 
+response: 
+ The compiler first starts with IfArith expressions, converting them to IfArith-Tiny for simplification.
+ The next layer (ANF) organizes expressions into a linear structure. It is then translated into
+ Intermediate Representation (IR-Virtual), which maps virtual instructions. The x86 assembly
+ instructions are generated from the information gathered. It is lastly formatted into NASM
+ assembly for linking and assembly. We don't believe there are any redundant passes as each
+ are all important and essential. Additional optimization passes could enhance performance,
+ such as dead code elimination or constant folding, though they may add complexity to the
+ compiler.
+
 [ Question 4 ] 
 
 This is a larger project, compared to our previous projects. This
@@ -92,7 +102,15 @@ any pattern in this code that resonates with you from earlier in the
 semester.
 
 response:
-This project's syntax and idioms are similar to the exericise we did called "if-arith" and the church-encoding in project 4.
+This project's syntax and idioms are similar to the exercise we did called "if-arith" and the church encoding in project 
+4. This project contains a variety of idioms that were taught earlier in this course. One of the most noticeable ones is 
+tail recursion. The functions linearize and
+translate use this idiom extensively. Pattern matching is also used throughout the code to match
+ different data structures such as symbols, lists, and many more. The match function makes it
+ easier to handle different/complex cases. Pattern matching makes the code easier to read and
+ understand. Foldl was also used on multiple occasions in combination with lambda functions.
+ Lastly, higher-order functions such as ifarith-tiny->anf can be seen.
+
 
 [ Question 5 ] 
 
