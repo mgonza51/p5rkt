@@ -42,7 +42,7 @@ racket compiler.rkt -v test-programs/sum1.irv
 
 (Also pass in -m for Mac)
 
-response: files created for this: new1.irv, new2.irv, new3.irv
+response: (files created for this: new1.irv, new2.irv, new3.irv included in repo)
 The purpose of ir-virtual is as the name suggests, an immediate representation of programs. The ir-virtual turns programs into ".irv" files that makes them a simpler version of an assembly code. 
 
 Ir-virtual is different than x86 architecture because x86 architecture is more efficent than the ir-virtual representation since it uses the 16 registers and memory addresses. Whereas Ir-virtual uses virtual registers, and linearizes the instructions using the "linearize" function. Ir-virtual and x86 archictecture both use jump instructions but ir-virtual is limited in the fact that it does not support all assembly instructions.
@@ -70,7 +70,7 @@ For this question, please add your `.ifa` programs either (a) here or
 (b) to the repo and write where they are in this file.
 
 
-Response: 
+Response:  (our .ifa files are included in the repo)
 Intermediate Representations of New4.ifa. 
 (cond [(+ 1 2) (print 50)] [(* 3 2) (print 70)] [else (print 80)]). This is the starting point, representing the program in its high-level language form.
 The program contains a cond expression with three conditions and an else branch.
@@ -147,6 +147,17 @@ ask me.
 
 Your team will receive a small bonus for being the first team to
 report a unique bug (unique determined by me).
+
+response:
+When examining the compiler code and running tests to identify potential bugs, we found several areas where the behavior of the compiler diverges from expectations. One key area of concern is how cond expressions are handled during the compilation process. In IfArith-Tiny, cond expressions are converted to nested if expressions, and these nested if statements should adhere to short-circuiting semantics, stopping evaluation once a true condition is found.
+
+While running the program directly in Racket, cond behaves according to Racket's standard semantics, correctly using short-circuiting. However, when the program is compiled using the IfArith compiler, there may be a discrepancy in how the compiler translates cond to if. This could lead to incorrect control flow handling in the lower-level intermediate representations.
+
+Another potential issue arises with the use of let* expressions, particularly when managing the representation of true and false in the compiler. Since true and false are represented as non-zero and zero respectively, there could be issues with how the compiler handles these boolean values, especially in let* expressions.
+
+Additionally, the compiler's handling of arithmetic operations such as subtraction appears to be problematic, causing unexpected behavior or failures in the compiled code. These issues may stem from discrepancies in how the compiler translates arithmetic expressions in the high-level IfArith language to lower-level intermediate representations. We also found bugs when using built-ins like >,<, and = in functions.
+
+Overall, these findings suggest that the compiler may not correctly manage control flow and semantics in certain scenarios, particularly in the conversion of cond expressions and arithmetic operations. For future work, it would be important to focus on refining the translation from IfArith to lower-level representations, ensuring accurate handling of boolean values, arithmetic operations, and control flow. This experience highlights the importance of rigorous testing and code critique to identify and address potential issues in the compilation process.
 
 [ High Level Reflection ] 
 
