@@ -119,36 +119,29 @@ example:
       [else (print 80)])
 ```
 
-Parsing (IfArith):
-Input: The original program is read and parsed into an abstract syntax tree (AST).
-Output: The parsed representation: (cond [(+ 1 2) (print 50)] [(* 3 2) (print 70)] [else (print 80)]).
-This stage organizes the program in a structured representation, making it easier for subsequent transformations.
+1.Parsing:  IfArith parses the source program into an abstract syntax tree (AST).
+Output: The parsed representation. (cond [(+1, 2) (print 50)] [(* 3 2) (Print 70)] [Else (Print 80)]).
+This step arranges the program into a structured representation, making further modifications easy.
 
-IfArith to IfArith-Tiny Desugaring:
-Input: The IfArith AST.
-Output: The program is desugared from cond to nested if expressions.
-The original program is transformed to: (if (+ 1 2) (print 50) (if (* 3 2) (print 70) (print 80))).
-This transformation simplifies the program's structure, converting complex constructs into simpler forms.
+2. Arith->Ifarith: To convert IfArith to IfArith-Tiny Desugaring, use the AST as the input.
+Output: The program is desugared from conditional to nested if expressions.
+The original code is rewritten as: (if (+ 1 2) (print 50) (if (* 3 2) (print 70) (print 80)).
+This transformation streamlines the program's structure, reducing complicated constructions to simpler forms.
+To convert IfArith-Tiny to ANF (A-normal form), provide the IfArith-Tiny AST as an input.
+Output: The program is further changed into A-normal form, which simplifies equations and adds temporary variables. For example: (let ((x1254 1))...
+This stage simplifies the program and prepares it for the future stages of compilation.
 
-IfArith-Tiny to ANF (A-normal form):
-Input: The IfArith-Tiny AST.
-Output: The program is further transformed into A-normal form, which breaks down expressions into simpler forms and introduces temporary variables.
+3. ANF to IR (virtual):
+Input: the ANF representation.
+Output: The program is converted to a lower-level representation that resembles assembly language.
+Example: ((lab1263) (mov-lit x1254 1)).
+This step takes the program closer to machine code, introducing explicit control flow and actions.
 
-Example: (let ((x1254 1)) ...
-This stage aims to simplify the program and prepare it for the next steps in compilation.
-ANF to IR-virtual:
-Input: The ANF representation.
-Output: The program is translated to a lower-level representation, resembling assembly language.
-
-Example: ((label lab1263) (mov-lit x1254 1)).
-This stage brings the program closer to machine code and introduces explicit control flow and operations.
-
-IR-virtual to x86-64 assembly:
-Input: The IR-virtual representation.
-Output: The final x86-64 assembly code.
-
-Example: mov esi, 50.
-This stage converts the virtual representation to the actual assembly code that can be executed on the target architecture.
+4.IR-virtual to x86-64 Assembly:
+Input: the IR-virtual representation.
+Output: The finished x86-64 assembly code.
+For example, move esi to 50.
+This stage translates the virtual representation into assembly code that can be run on the target architecture.
 
 [ Question 4 ] 
 
