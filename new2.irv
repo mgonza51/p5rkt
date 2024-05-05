@@ -1,0 +1,5 @@
+((mov-lit r1 5)
+(mov-lit r2 1)
+(mul r2 r1)
+(print r2))
+

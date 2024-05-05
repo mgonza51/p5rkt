@@ -1,0 +1,9 @@
+((mov-lit r0 10)
+(mov-lit r1 5)
+(add r0 r1)
+(print r0)
+(jmp end))
+
+
+
+

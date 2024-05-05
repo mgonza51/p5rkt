@@ -1,0 +1,4 @@
+((mov-lit r1 5)
+(mov-lit r2 3)
+(add r1 r2)
+(print r1))
