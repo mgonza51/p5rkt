@@ -20,14 +20,6 @@ words per question. You may divide up the work, but each of you should
 collectively read and agree to each other's answers.
 
 
-;;arith1 works as expected
-;;arith0 
-;;42 does work
-;;arith2 works
-;;multiplication and addition works, 
-;;subtraction does not work
-;; in our let* the program fails because we cannot represent #t or #f, in our compiler representation true and false is represented using 0 and non-zero
-;;for now, the cond in our compiler returns the branch when the clause is false (has value 0)
 
 [ Question 1 ] 
 
@@ -192,6 +184,16 @@ Another potential issue arises with the use of let* expressions, particularly wh
 Additionally, the compiler's handling of arithmetic operations such as subtraction appears to be problematic, causing unexpected behavior or failures in the compiled code. These issues may stem from discrepancies in how the compiler translates arithmetic expressions in the high-level IfArith language to lower-level intermediate representations. We also found bugs when using built-ins like >,<, and = in functions.
 
 Overall, these findings suggest that the compiler may not correctly manage control flow and semantics in certain scenarios, particularly in the conversion of cond expressions and arithmetic operations. For future work, it would be important to focus on refining the translation from IfArith to lower-level representations, ensuring accurate handling of boolean values, arithmetic operations, and control flow. This experience highlights the importance of rigorous testing and code critique to identify and address potential issues in the compilation process.
+
+review of test cases:
+-arith1 works as expected, arith0 
+-42 does work
+-arith2 works
+-multiplication and addition operators work
+-subtraction does not work
+-in our let* the program fails because we cannot represent #t or #f, in our compiler representation true and false is represented using 0 and non-zero
+-for now, the cond in our compiler returns the branch when the clause is false (has value 0)
+-new4ifa when compiled and executed, returns 80 but dr racket returns 50, this is another bug
 
 [ High Level Reflection ] 
 
