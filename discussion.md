@@ -68,9 +68,12 @@ carefully the relevance of each of the intermediate representations.
 
 For this question, please add your `.ifa` programs either (a) here or
 (b) to the repo and write where they are in this file.
-
-
 Response:  (our .ifa files are included in the repo)
+new1.ifa output ==> 1
+new2.ifa output ==> 3
+new3.ifa output ==> 40
+new4.ifa output ==> 80
+
 Intermediate Representations of New4.ifa. 
 (cond [(+ 1 2) (print 50)] [(* 3 2) (print 70)] [else (print 80)]). This is the starting point, representing the program in its high-level language form.
 The program contains a cond expression with three conditions and an else branch.
