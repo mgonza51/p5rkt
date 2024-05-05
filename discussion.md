@@ -112,6 +112,44 @@ response:
  such as dead code elimination or constant folding, though they may add complexity to the
  compiler.
 
+example: 
+```ifa
+(cond [(+ 1 2) (print 50)]
+      [(* 3 2) (print 70)]
+      [else (print 80)])
+```
+
+Parsing (IfArith):
+Input: The original program is read and parsed into an abstract syntax tree (AST).
+Output: The parsed representation: (cond [(+ 1 2) (print 50)] [(* 3 2) (print 70)] [else (print 80)]).
+This stage organizes the program in a structured representation, making it easier for subsequent transformations.
+
+IfArith to IfArith-Tiny Desugaring:
+Input: The IfArith AST.
+Output: The program is desugared from cond to nested if expressions.
+The original program is transformed to: (if (+ 1 2) (print 50) (if (* 3 2) (print 70) (print 80))).
+This transformation simplifies the program's structure, converting complex constructs into simpler forms.
+
+IfArith-Tiny to ANF (A-normal form):
+Input: The IfArith-Tiny AST.
+Output: The program is further transformed into A-normal form, which breaks down expressions into simpler forms and introduces temporary variables.
+
+Example: (let ((x1254 1)) ...
+This stage aims to simplify the program and prepare it for the next steps in compilation.
+ANF to IR-virtual:
+Input: The ANF representation.
+Output: The program is translated to a lower-level representation, resembling assembly language.
+
+Example: ((label lab1263) (mov-lit x1254 1)).
+This stage brings the program closer to machine code and introduces explicit control flow and operations.
+
+IR-virtual to x86-64 assembly:
+Input: The IR-virtual representation.
+Output: The final x86-64 assembly code.
+
+Example: mov esi, 50.
+This stage converts the virtual representation to the actual assembly code that can be executed on the target architecture.
+
 [ Question 4 ] 
 
 This is a larger project, compared to our previous projects. This
