@@ -94,7 +94,7 @@ there could be more?
 In answering this question, you must use specific examples that you
 got from running the compiler and generating an output.
 
-response: 
+Response: 
  The compiler first starts with IfArith expressions, converting them to IfArith-Tiny for simplification.
  The next layer (ANF) organizes expressions into a linear structure. It is then translated into
  Intermediate Representation (IR-Virtual), which maps virtual instructions. The x86 assembly
@@ -145,7 +145,7 @@ definition of what an idiom is: think carefully about whether you see
 any pattern in this code that resonates with you from earlier in the
 semester.
 
-response:
+Response:
 This project's syntax and idioms are similar to the exercise we did called "if-arith" and the church encoding in project 
 4. This project contains a variety of idioms that were taught earlier in this course. One of the most noticeable ones is 
 tail recursion. The functions linearize and
@@ -174,7 +174,7 @@ ask me.
 Your team will receive a small bonus for being the first team to
 report a unique bug (unique determined by me).
 
-response:
+Response:
 When examining the compiler code and running tests to identify potential bugs, we found several areas where the behavior of the compiler diverges from expectations. One key area of concern is how cond expressions are handled during the compilation process. In IfArith-Tiny, cond expressions are converted to nested if expressions, and these nested if statements should adhere to short-circuiting semantics, stopping evaluation once a true condition is found.
 
 While running the program directly in Racket, cond behaves according to Racket's standard semantics, correctly using short-circuiting. However, when the program is compiled using the IfArith compiler, there may be a discrepancy in how the compiler translates cond to if. This could lead to incorrect control flow handling in the lower-level intermediate representations.
@@ -183,9 +183,9 @@ Another potential issue arises with the use of let* expressions, particularly wh
 
 Additionally, the compiler's handling of arithmetic operations such as subtraction appears to be problematic, causing unexpected behavior or failures in the compiled code. These issues may stem from discrepancies in how the compiler translates arithmetic expressions in the high-level IfArith language to lower-level intermediate representations. We also found bugs when using built-ins like >,<, and = in functions.
 
-Overall, these findings suggest that the compiler may not correctly manage control flow and semantics in certain scenarios, particularly in the conversion of cond expressions and arithmetic operations. For future work, it would be important to focus on refining the translation from IfArith to lower-level representations, ensuring accurate handling of boolean values, arithmetic operations, and control flow. This experience highlights the importance of rigorous testing and code critique to identify and address potential issues in the compilation process.
+Overall, the findings show that the compiler may not correctly manage control flow and semantics in certain scenarios, particularly in the conversion of cond expressions and arithmetic operations. For future work, it would be important to focus on refining the translation from IfArith to lower-level representations, ensuring accurate handling of boolean values, arithmetic operations, and control flow. This experience highlights the importance of rigorous testing and code critique to identify and address potential issues in the compilation process.
 
-review of test cases:
+Review of test cases:
 -arith1 works as expected, arith0 
 -42 does work
 -arith2 works
@@ -193,7 +193,7 @@ review of test cases:
 -subtraction does not work
 -in our let* the program fails because we cannot represent #t or #f, in our compiler representation true and false is represented using 0 and non-zero
 -for now, the cond in our compiler returns the branch when the clause is false (has value 0)
--new4ifa when compiled and executed, returns 80 but dr racket returns 50, this is another bug
+-new4ifa when compiled and executed, returns 80 but dr racket returns 50, this is another bug 
 
 [ High Level Reflection ] 
 
