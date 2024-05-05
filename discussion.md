@@ -83,7 +83,8 @@ IR-Virtual deals with data manipulation in registers and memory, reflecting how 
 
 x86 Assembly Code: The final target representation is in x86 assembly code, which the hardware can execute directly.
 It contains specific instructions for the x86 architecture, handling data in registers and memory, arithmetic operations, comparisons, and control flow. This stage focuses on translating the program into machine-executable code, using printf to print values.
-Each stage converts the high-level IfArith source code to a form that can be executed by hardware. The first steps (IfArith and IfArith-Tiny) aim to simplify the code and control short-circuiting behavior. The intermediate stages (ANF and IR-Virtual) simplify the program's operations and statements, allowing for more efficient execution. The last stage (x86 assembly) produces machine code that is executable on the target architecture. The mismatch in the program's output might be attributed to how short-circuiting behavior is handled during the transition from IfArith to IfArith-Tiny, or to potential difficulties with jump management in the IR-Virtual and x86 stages.
+
+In sum, each stage converts the high-level IfArith source code to a form that can be executed by hardware. The first steps (IfArith and IfArith-Tiny) aim to simplify the code and control short-circuiting behavior. The intermediate stages (ANF and IR-Virtual) simplify the program's operations and statements, allowing for more efficient execution. The last stage (x86 assembly) produces machine code that is executable on the target architecture. The mismatch in the program's output might be attributed to how short-circuiting behavior is handled during the transition from IfArith to IfArith-Tiny, or to potential difficulties with jump management in the IR-Virtual and x86 stages.
 
 
 [ Question 3 ] 
