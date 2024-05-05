@@ -205,3 +205,6 @@ nuts and bolts of code, try to use this experience as a way to think
 about how you would approach doing group code critique. What would you
 do differently next time, what did you learn?
 
+This project gave us a thorough understanding of the complexity involved in translating and debugging a high-level language (IfArith) into x86-64 assembly code. It also helped us understand the nuances of intermediate representations and desugaring procedures. Seeing the various compilation stages—IfArith-Tiny, ANF, and IR-virtual, for example—highlighted how crucial effective code translation and control flow management are. Debugging differences between intended and actual results was the most difficult part, requiring a thorough grasp of each compilation stage and how they interact. We see the value of improving our debugging techniques as we consider how to use this expertise in upcoming group code reviews. This project emphasizes how important it is to test and debug each step of code translation in an organized manner, especially when working with intermediate representations and optimizations. The group work was facilitated by effective teamwork and communication, both of which are necessary for insightful criticism. 
+
+
